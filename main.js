@@ -17,26 +17,16 @@ let menu = {
   },
   generateRandomMeal: function () {
     let appetizer = this.getRandomDishFromCourse('appetizers').name;
-    
     let main = this.getRandomDishFromCourse('mains').name;
-    
     let dessert = this.getRandomDishFromCourse('desserts').name;
     
-    let appPrice = this.courses.appetizers.find(function (obj) {
-      return obj.name === appetizer;
-    }).price;
-    
-    let mainPrice =this.courses.mains.find(function (obj) {
-      return obj.name === main;
-    }).price;
-    
-    let dessertPrice = this.courses.desserts.find(function (obj) {
-      return obj.name === dessert;
-    }).price;
+    let appPrice = this.courses.appetizers.find(obj => obj.name === appetizer).price;
+    let mainPrice = this.courses.mains.find(obj => obj.name === main).price;
+    let dessertPrice = this.courses.desserts.find(obj => obj.name === dessert).price;
     
     let total = appPrice + mainPrice + dessertPrice;
     
-    return console.log(`Your appetizer will be ${appetizer}, your main course will be ${main}, and your dessert will be ${dessert}. Your total price will be $${total}.`);
+    return `Your appetizer will be ${appetizer}, your main course will be ${main}, and your dessert will be ${dessert}. Your total price will be $${total}.`;
   }
 };
 
@@ -49,4 +39,6 @@ menu.addDishToCourse('mains', 'chicken', 18);
 menu.addDishToCourse('desserts', 'pecan pie', 6);
 menu.addDishToCourse('desserts', 'cheese cake', 7);
 menu.addDishToCourse('desserts', 'ice cream', 5);
-menu.generateRandomMeal();
+
+let meal = menu.generateRandomMeal();
+console.log(meal);
